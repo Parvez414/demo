@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mycompany</groupId>
+    <artifactId>healqa-starter-suite</artifactId>
+    <version>1.0.0</version>
+    <name>HealQA Enterprise Evaluation Test Suite</name>
+    <description>Automated test suite powered by the HealQA AI Automation Core SDK.</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <thread.count>2</thread.count>
+        <aspectj.version>1.9.22</aspectj.version>
+    </properties>
+
+    <repositories>
+        <!-- Pre-bundled local repository: Zero GitHub auth or settings.xml required -->
+        <repository>
+            <id>healqa-local-repo</id>
+            <name>HealQA Embedded Core Repository</name>
+            <url>file://${project.basedir}/.repo</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- HealQA AI Automation Core SDK -->
+        <dependency>
+            <groupId>com.automation</groupId>
+            <artifactId>ai-automation-core</artifactId>
+            <version>1.2.0</version>
+                        </dependency>
+
+                        <!-- Video Recording: JCodec Pure Java MP4 Encoder -->
+                        <dependency>
+                            <groupId>org.jcodec</groupId>
+                            <artifactId>jcodec</artifactId>
+                            <version>0.2.5</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.jcodec</groupId>
+                            <artifactId>jcodec-javase</artifactId>
+                            <version>0.2.5</version>
+                        </dependency>
+
+                        <!-- Selenium Java -->
+                        <dependency>
+                            <groupId>org.seleniumhq.selenium</groupId>
+                            <artifactId>selenium-java</artifactId>
+                            <version>4.21.0</version>
+                        </dependency>
+
+                        <!-- Cucumber Framework -->
+                        <dependency>
+                            <groupId>io.cucumber</groupId>
+                            <artifactId>cucumber-java</artifactId>
+                            <version>7.15.0</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>io.cucumber</groupId>
+                            <artifactId>cucumber-testng</artifactId>
+                            <version>7.15.0</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>io.cucumber</groupId>
+                            <artifactId>cucumber-picocontainer</artifactId>
+                            <version>7.15.0</version>
+                        </dependency>
+
+                        <!-- TestNG -->
+                        <dependency>
+                            <groupId>org.testng</groupId>
+                            <artifactId>testng</artifactId>
+                            <version>7.9.0</version>
+                        </dependency>
+
+                        <!-- Allure Reporting -->
+                        <dependency>
+                            <groupId>io.qameta.allure</groupId>
+                            <artifactId>allure-cucumber7-jvm</artifactId>
+                            <version>2.27.0</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>io.qameta.allure</groupId>
+                            <artifactId>allure-testng</artifactId>
+                            <version>2.27.0</version>
+                        </dependency>
+                    </dependencies>
+
+                    <build>
+                        <plugins>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-compiler-plugin</artifactId>
+                                <version>3.13.0</version>
+                                <configuration>
+                                    <release>17</release>
+                                </configuration>
+                            </plugin>
+                            <plugin>
+                                <groupId>org.apache.maven.plugins</groupId>
+                                <artifactId>maven-surefire-plugin</artifactId>
+                                <version>3.2.5</version>
+                                <configuration>
+                                    <testFailureIgnore>true</testFailureIgnore>
+                                    <properties>
+                                        <property>
+                                            <name>dataproviderthreadcount</name>
+                                            <value>${thread.count}</value>
+                                        </property>
+                                        <property>
+                                            <name>listener</name>
+                                            <value>com.automation.listeners.AnnotationTransformer</value>
+                                        </property>
+                                    </properties>
+                                    <includes>
+                                        <include>**/*Runner.java</include>
+                                    </includes>
+                                </configuration>
+                            </plugin>
+                        </plugins>
+                    </build>
+                </project>

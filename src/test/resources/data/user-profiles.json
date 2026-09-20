@@ -1,0 +1,16 @@
+{
+  "activeAdmin": {
+    "role": "Admin",
+    "status": "Enabled",
+    "username": "admin_user",
+    "email": "{{random_email}}",
+    "notes": "Automated test administrator account"
+  },
+  "standardUser": {
+    "role": "ESS",
+    "status": "Enabled",
+    "username": "standard_user",
+    "email": "{{random_email}}",
+    "notes": "Standard employee self-service profile"
+  }
+}
