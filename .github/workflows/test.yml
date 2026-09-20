@@ -103,7 +103,7 @@ jobs:
           HEALQA_RUN_ID: ${{ github.event.inputs.healqa_run_id || github.event.inputs.healqa_execution_id || '' }}
           HEALQA_EXECUTION_ID: ${{ github.event.inputs.healqa_execution_id || github.event.inputs.healqa_run_id || '' }}
           HEALQA_EXECUTION_SOURCE: GITHUB_ACTIONS
-          PLATFORM_TELEMETRY_URL: ${{ github.event.inputs.telemetry_url || secrets.PLATFORM_TELEMETRY_URL || 'https://healqa.in/api/v1/telemetry/report' }}
+          PLATFORM_TELEMETRY_URL: ${{ github.event.inputs.telemetry_url || secrets.PLATFORM_TELEMETRY_URL || 'HealQA Enterprise Automation Pipeline' }}
           MAVEN_ARGS: ${{ github.event.inputs.maven_args }}
         run: |
           rm -rf ~/.m2/repository/com/automation/ai-automation-core
